@@ -1,3 +1,5 @@
+import dotenv from "dotenv"
+
 export default {
 	HOST: "localhost",
   	USER: "merryn",
