@@ -1,14 +1,15 @@
-import {
-  create,
-  findAll,
-  findOne,
-  update,
-  deleteOne,
-  deleteAll,
-  findAllPublished
-} from "../controllers/tutorial.controller.js";
+// import {
+//   create,
+//   findAll,
+//   findOne,
+//   update,
+//   deleteOne,
+//   deleteAll,
+//   findAllPublished
+// } from "../controllers/tutorial.controller.js";
 
 import { falWebhook, generateImageWithFal, getGenerateImageStatus, getGenerateResult, generateImageSync } from "./generate.js";
+import { runAIAgent } from "../../ai_agent.js";
 
 
 import express from "express";
@@ -29,5 +30,8 @@ router.post('/generate', generateImageWithFal);
 router.get('/status', getGenerateImageStatus);
 router.get('/test', getGenerateResult);
 router.post('/test-sync', generateImageSync);
+
+// AI Agent
+router.post('/execute', runAIAgent);
 
 export default router;

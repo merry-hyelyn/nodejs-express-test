@@ -1,7 +1,7 @@
 import express from "express"
 import bodyParser from "body-parser"
 import cors from "cors"
-import db from "./app/models/index.js"
+// import db from "./app/models/index.js"
 import tutorialRouters from "./app/routes/tutorial.routers.js";
 import request from "request";
 import dotenv from "dotenv"
@@ -17,7 +17,7 @@ const STATE = process.env.STATE
 var redirectURI = encodeURI("http://localhost:8080/callback");
 var api_url = "";
 
-db.sequelize.sync();
+// db.sequelize.sync();
 
 var corsOptions = {
     origin: "http://localhost:8081"
