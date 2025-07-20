@@ -1,10 +1,9 @@
 import { tool } from "@langchain/core/tools";
 import { fal } from "@fal-ai/client";
 import { ChatOpenAI } from "@langchain/openai";
-import { AgentExecutor, createReactAgent } from "langchain/agents"
 import { pull } from "langchain/hub"
 import { createReactAgent } from "@langchain/langgraph/prebuilt"
-import { z } from "zod"
+import { MemorySaver } from "@langchain/langgraph";
 
 const callFalAI = async (prompt) => {
     console.log("CallFalAI")
@@ -58,8 +57,11 @@ const llm = new ChatOpenAI({ temperature: 0})
 const tools = [LLMTool, falTool]
 const prompt = await pull("hwchase17/react"); 
 
-const agent = await createReactAgent({
-    llm, tools, prompt
+const agentCheckpointer = new MemorySaver();
+const agent = createReactAgent({
+    llm: llm,
+    tools: tools,
+    checkpointer: agentCheckpointer,
 })
 
 const agentExecutor = new AgentExecutor({
